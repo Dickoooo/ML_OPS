@@ -13,10 +13,10 @@ def model_pred(features):
     return int(prediction[0])
 
 
-@app.route("/", methods=["GET"])
-def home():
-    """Route pour afficher la page d'accueil"""
-    return render_template("index.html")
+@app.route("/")
+def index():
+    """Route pour la page d'accueil"""
+    return render_template("index.html")  # Assurez-vous d'avoir un fichier index.html dans le dossier templates
 
 
 @app.route("/predict", methods=["POST"])
@@ -30,7 +30,7 @@ def predict():
             years_employed = int(request.form["years_employed"])
             fico_score = int(request.form["fico_score"])
 
-            # Constante pour la prédiction (vous pouvez adapter cette valeur si nécessaire)
+            # Constante pour la prédiction
             constant = 8.0913
 
             # Prédiction du modèle
@@ -50,20 +50,13 @@ def predict():
                 )
 
         except ValueError as e:
-            # Gestion des erreurs liées aux types de valeurs (par exemple, si on soumet des lettres à la place de chiffres)
             return render_template("index.html", prediction_text=f"Erreur dans les valeurs numériques : {e}")
         
         except KeyError as e:
-            # Gestion des erreurs liées à des clés manquantes dans le formulaire
             return render_template("index.html", prediction_text=f"Clé manquante dans le formulaire : {e}")
-
+        
         except Exception as e:
-            # Gestion des erreurs non anticipées
             return render_template("index.html", prediction_text=f"Une erreur inattendue est survenue : {e}")
-
-    else:
-        return render_template("index.html")
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5003, debug=True)
