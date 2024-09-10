@@ -60,6 +60,10 @@ def predict():
             logging.error(f"Clé manquante dans le formulaire : {e}")
             return render_template("index.html", prediction_text=f"Clé manquante dans le formulaire : {e}")
         
+        except (TypeError, IOError) as e:  # Ajout d'autres exceptions possibles
+            logging.error(f"Erreur liée aux types ou fichiers : {e}")
+            return render_template("index.html", prediction_text=f"Erreur liée aux types ou fichiers : {e}")
+        
         except Exception as e:
             logging.error(f"Une erreur inattendue est survenue : {e}")
             return render_template("index.html", prediction_text=f"Une erreur inattendue est survenue : {e}")
