@@ -1,10 +1,15 @@
 from flask import Flask, render_template, request
 import pickle
 import pandas as pd
+import logging
 
 app = Flask(__name__)
-model = pickle.load(open("regressionlogistic.pkl", "rb"))  # Chargement du modèle depuis le fichier pickle
 
+# Configurez le logging
+logging.basicConfig(level=logging.ERROR)
+
+# Chargement du modèle depuis le fichier pickle
+model = pickle.load(open("regressionlogistic.pkl", "rb"))
 
 def model_pred(features):
     """Fonction pour prédire le résultat basé sur les features fournies"""
@@ -12,12 +17,10 @@ def model_pred(features):
     prediction = model.predict(test_data)
     return int(prediction[0])
 
-
 @app.route("/")
 def index():
     """Route pour la page d'accueil"""
     return render_template("index.html")  # Assurez-vous d'avoir un fichier index.html dans le dossier templates
-
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -50,12 +53,15 @@ def predict():
                 )
 
         except ValueError as e:
+            logging.error(f"Erreur dans les valeurs numériques : {e}")
             return render_template("index.html", prediction_text=f"Erreur dans les valeurs numériques : {e}")
         
         except KeyError as e:
+            logging.error(f"Clé manquante dans le formulaire : {e}")
             return render_template("index.html", prediction_text=f"Clé manquante dans le formulaire : {e}")
         
         except Exception as e:
+            logging.error(f"Une erreur inattendue est survenue : {e}")
             return render_template("index.html", prediction_text=f"Une erreur inattendue est survenue : {e}")
 
 if __name__ == "__main__":
