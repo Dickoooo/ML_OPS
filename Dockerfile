@@ -4,7 +4,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy source code to working directory
-COPY app.py /app/
+COPY requirements.txt /app/
 
 # Install packages from requirements.txt#
 
