@@ -62,4 +62,4 @@ jobs:
         run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:${{ env.date }}
 
       - name: Docker Push
-        run: docker push ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:${{ env.date }}
+        run: docker push my-image:latest
