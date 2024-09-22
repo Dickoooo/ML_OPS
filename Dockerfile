@@ -6,7 +6,7 @@ WORKDIR / app
 # Copie tous les fichiers du répertoire local dans le répertoire de travail du conteneur
 COPY . /app
 
-# Copy source code to working directory
+## Copy source code to working directory
 COPY requirements.txt /app/
 
 # Install packages from requirements.txt#
