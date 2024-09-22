@@ -4,7 +4,7 @@ import pandas as pd
 
 
 app = Flask(__name__)
-model = pickle.load(open("pipeline/regressionlogistic.pkl", "rb"))
+model = pickle.load(open("regressionlogistic.pkl", "rb"))
 
 
 def model_pred(features):
