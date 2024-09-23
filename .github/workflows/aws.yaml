@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: eu-north-1                   # set this to your preferred AWS region, e.g. us-west-1
+  AWS_REGION: eu-north-1                   ## set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: mlopssda           # set this to your Amazon ECR repository name
   ECS_SERVICE: mlops_catboost4_service                 # set this to your Amazon ECS service name
   ECS_CLUSTER: cluster1                 # set this to your Amazon ECS cluster name
