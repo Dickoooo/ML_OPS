@@ -12,7 +12,7 @@ env:
   ECS_TASK_DEFINITION: mlops_catboost4 # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: mlops_catboost41           # set this to the name of the container in the
-                                               # containerDefinitions section of your task definition
+                                
 
 permissions:
   contents: read
